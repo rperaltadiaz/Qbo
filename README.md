@@ -1,2 +1,6 @@
 # Qbo
-Bbo developmetnt eviroment
+Qbo developmetnt eviroment.
+
+- ScratchX extension library.
+- PiCmd program
+- Websocket server
