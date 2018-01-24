@@ -21,11 +21,15 @@ new (function() {
         return {status: 2, msg: 'Ready'};
     };
 
+    ext.local_connect = function() {
+    	connect(127.0.0.1, 51717);
+    }
+    
     // Functions for block with type 'w' will get a callback function as the 
     // final argument. This should be called to indicate that the block can
     // stop waiting.
     ext.connect = function(ipAddr, port, callback) {
-	
+	console.log('conecting to ' + ipAddr + '(' + port ')');
 	if ('WebSocket' in window){
 	    // WebSocket is supported. You can proceed with your code
 	    console.log('WEB socket supported');
@@ -165,6 +169,7 @@ new (function() {
     var descriptor = {
         blocks: [
             ['w', 'Connect ip: %s port: %n', 'connect', '169.254.98.67', 51717],
+	    ['h', 'Start', 'local_connect'],
 	    ['w', 'Say %s', 'say', 'I am connected!'],
 	    ['w', 'Nose color: %m.noseColor', 'nose_color', 'red'],
 	    ['w', 'Voice: %m.voice', 'voice', 'english'],
