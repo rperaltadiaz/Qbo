@@ -111,7 +111,7 @@ new (function() {
 	return connected;
     }; 
 
-    ext.is_touch = function(text) {
+    ext.when_listen = function(text) {
 	if (text == textListen) {
 		return true;
 	}
