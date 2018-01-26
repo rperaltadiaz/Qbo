@@ -45,6 +45,7 @@ new (function() {
 		console.log('server response: ' + server_message);
 		if (server_message.startsWith("Text:")) {
 			textListen = server_message.substr(6, server_message.length);
+			textListen = textListen.substr(0, textListen.length -1);
 			console.log('TEXTLISTEN: ' + textListen);
 		}
 	    }
