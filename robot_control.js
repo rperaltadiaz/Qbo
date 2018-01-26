@@ -114,7 +114,7 @@ new (function() {
 
     ext.when_listen = function(text) {
 	console.log('when_listen' + text + '==' + textListen);
-    	if (text.equals(textListen)) {
+    	if (text.toString().toLowerCase().equals(textListen.toString().toLowerCase())) {
 		console.log('listen EQUALS');
 		return true;
 	}
