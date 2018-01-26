@@ -9,6 +9,7 @@ new (function() {
     var mess_recv = false;
     var speed = 50;  // speed default value.
     var voice = "english"
+    var textListen = "";
     
     //    var touch_left = false, touch_right = false;
 
@@ -42,21 +43,9 @@ new (function() {
 	    connection.onmessage = function(e){
 		var server_message = e.data;
 		console.log('server response: ' + server_message);
-		switch (e.data) {
-		case 'touch_up true':
-		    console.log('touch_up to true');
-		    touch_up = true;			
-		    break;
-		case 'touch_left true':
-		    console.log('touch_left to true');
-		    touch_left = true;			
-		    break;
-		case 'touch_right true':
-		    console.log('touch_right to true');
-		    touch_right = true;			
-		    break;
-		default:
-		    break;	
+		if (server_message.startsWith("Text:")) {
+			textListen = server_message.substr(6, server_message.length);
+			console.log('TEXTLISTEN: ' + textListen);
 		}
 	    }
 	} 
