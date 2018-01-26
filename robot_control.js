@@ -44,7 +44,7 @@ new (function() {
 		var server_message = e.data;
 		console.log('server response: ' + server_message);
 		if (server_message.startsWith("Text:")) {
-			textListen = server_message.substr(6, server_message.length);
+			textListen = server_message.substr(7, server_message.length);
 			textListen = textListen.substr(0, textListen.length -1);
 			console.log('TEXTLISTEN: ' + textListen);
 		}
@@ -114,7 +114,7 @@ new (function() {
 
     ext.when_listen = function(text) {
 	console.log('when_listen' + text + '==' + textListen);
-    	if (text.toString().toLowerCase().equals(textListen.toString().toLowerCase())) {
+    	if (text == textListen) {
 		console.log('listen EQUALS');
 		return true;
 	}
