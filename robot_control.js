@@ -111,6 +111,13 @@ new (function() {
 	return connected;
     }; 
 
+    ext.is_touch = function(text) {
+	if (text == textListen) {
+		return true;
+	}
+	return false;
+    }
+    
     ext.is_touch = function(zone) {
 	switch (zone) {
 	case 'up':
@@ -162,6 +169,7 @@ new (function() {
 	    ['w', 'Mouth: %m.expression', 'mouthExpression', 'smile'],
 	    ['b', 'is connected', 'is_connected'],
 	    ['h', 'when touch %m.touchZone', 'is_touch', 'up'],
+	    ['h', 'when listen %s', 'when_listen', 'hello'],
 	    ['h', 'when message received', 'message_received'],
 	],
 	menus: {
