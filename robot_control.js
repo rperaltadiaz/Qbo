@@ -112,11 +112,11 @@ new (function() {
     }; 
 
     ext.when_listen = function(text) {
-	if (text == textListen) {
+	if (text.equals(textListen)) {
 		return true;
 	}
 	return false;
-    }
+    };
     
     ext.is_touch = function(zone) {
 	switch (zone) {
