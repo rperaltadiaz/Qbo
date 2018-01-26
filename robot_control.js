@@ -114,7 +114,7 @@ new (function() {
 
     ext.when_listen = function(text) {
 	if (text == textListen) {
-		console.log('listen EQUALS');
+		textListen = "";
 		return true;
 	}
 	return false;
