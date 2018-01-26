@@ -113,7 +113,8 @@ new (function() {
     }; 
 
     ext.when_listen = function(text) {
-	if (text.equals(textListen)) {
+	console.log('when_listen' + text + '==' + textListen);
+    	if (text.equals(textListen)) {
 		return true;
 	}
 	return false;
