@@ -127,7 +127,7 @@ new (function() {
     
     ext.is_touch = function(zone) {
 	if (textTouch == zone) {
-		reutrn true;
+		return true;
 	}
 		
 	
