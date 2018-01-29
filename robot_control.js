@@ -5,12 +5,12 @@ new (function() {
     var ext = this;
     var connected = false;
     var connection;
-    var touch_up = false;
     var mess_recv = false;
     var speed = 50;  // speed default value.
     var voice = "english"
     var textListen = "";
-    
+    var textText = "";
+
     //    var touch_left = false, touch_right = false;
 
     // Cleanup function when the extension is unloaded
@@ -48,6 +48,11 @@ new (function() {
 			textListen = textListen.substr(0, textListen.length -1);
 			console.log('TEXTLISTEN: ' + textListen);
 		}
+		if (server_message.startsWith("Touch:")) {
+			textTouch = server_message.substr(8, server_message.length);
+			textTouch = textTouch.substr(0, textListen.length -1);
+			console.log('TEXTTOUCH: ' + textTouch);
+		}    
 	    }
 	} 
 	else {
@@ -121,31 +126,10 @@ new (function() {
     };
     
     ext.is_touch = function(zone) {
-	switch (zone) {
-	case 'up':
-	    if (touch_up) {
-	    	touch_up = false;
-		return true;
-	    }
-	    return false;
-	    break;
-	case 'left':
-	    if (touch_left) {
-	    	touch_left = false;
-		return true;
-	    }
-	    return false;
-	    break;
-	case 'right':
-	    if (touch_right) {
-	    	touch_right = false;
-		return true;
-	    }
-	    return false;
-	    break;
-	default:
-	    break;
+	if (textTouch == zone) {
+		reutrn true;
 	}
+		
 	
 	return false;
     };
