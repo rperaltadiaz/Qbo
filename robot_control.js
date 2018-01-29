@@ -124,7 +124,8 @@ new (function() {
 	}
 	return false;
     };
-    
+	
+	
     ext.is_touch = function(zone) {
 	if (textTouch == zone) {
 		return true;
