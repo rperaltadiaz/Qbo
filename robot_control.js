@@ -9,7 +9,7 @@ new (function() {
     var speed = 50;  // speed default value.
     var voice = "english"
     var textListen = "";
-    var textText = "";
+    var textTouch = "";
 
     //    var touch_left = false, touch_right = false;
 
