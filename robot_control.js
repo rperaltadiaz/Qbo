@@ -50,7 +50,7 @@ new (function() {
 		}
 		if (server_message.startsWith("Touch:")) {
 			textTouch = server_message.substr(8, server_message.length);
-			textTouch = textTouch.substr(0, textListen.length -1);
+			textTouch = textTouch.substr(0, textTouch.length -1);
 			console.log('TEXTTOUCH: ' + textTouch);
 		}    
 	    }
