@@ -63,6 +63,7 @@ new (function() {
 	}
     };
     
+	
     ext.rotate = function(direction, degrees, callback) {
 	switch (direction) {
 	case 'up':
