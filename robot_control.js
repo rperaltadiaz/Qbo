@@ -44,13 +44,13 @@ new (function() {
 		var server_message = e.data;
 		console.log('server response: ' + server_message);
 		if (server_message.startsWith("Text:")) {
-			textListen = server_message.substr(7, server_message.length);
-			textListen = textListen.substr(0, textListen.length -1);
+			textListen = server_message.substr(6, server_message.length);
+			textListen = textListen.substr(0, textListen.length);
 			console.log('TEXTLISTEN: ' + textListen);
 		}
 		if (server_message.startsWith("Touch:")) {
-			textTouch = server_message.substr(8, server_message.length);
-			textTouch = textTouch.substr(0, textTouch.length -1);
+			textTouch = server_message.substr(7, server_message.length);
+			textTouch = textTouch.substr(0, textTouch.length);
 			console.log('TEXTTOUCH: ' + textTouch);
 		}    
 	    }
@@ -65,57 +65,54 @@ new (function() {
     
 	
     ext.rotate = function(direction, degrees, callback) {
-	switch (direction) {
-	case 'up':
-	    connection.send('-c servo -x 2 -a ' + degrees + ' -s ' + speed);
-	    break;
-	case 'down':
-	    connection.send('-c servo -x 2 -a ' + degrees + ' -s ' + speed);
-	    break;
-	case 'left':
-	    connection.send('-c servo -x 1 -a ' + degrees + ' -s ' + speed);
-	    break;
-	case 'right':
-	    connection.send('-c servo -x 1 -a ' + degrees + ' -s ' + speed);
-	    break;
-	default:
-	    break;
-	}
-//	connection.send('Rotate ' + direction + " " + degrees + ' degrees');
-	callback();
+		switch (direction) {
+		case 'up':
+			connection.send('-c servo -x 2 -a ' + degrees + ' -s ' + speed);
+			break;
+		case 'down':
+			connection.send('-c servo -x 2 -a ' + degrees + ' -s ' + speed);
+			break;
+		case 'left':
+			connection.send('-c servo -x 1 -a ' + degrees + ' -s ' + speed);
+			break;
+		case 'right':
+			connection.send('-c servo -x 1 -a ' + degrees + ' -s ' + speed);
+			break;
+		default:
+			break;
+		}
+		//callback();
     };
 
     ext.set_rotate_speed = function(speed_value, callback) {
-	speed = speed_value;
-	callback();
+		speed = speed_value;
+		callback();
     };
     
     ext.say = function(text, callback) {
-	connection.send('-c say -t "' + text + '"');
-	callback();
+		connection.send('-c say -t "' + text + '"');
+		callback();
     };
 
     ext.nose_color = function(text, callback) {
-	connection.send('-c nose -co ' + text);
-	console.log('Nose color ' + text);
-	callback();
+		connection.send('-c nose -co ' + text);
+		callback();
     };
 	
     ext.mouthExpression = function(expression, callback) {
-	connection.send('-c mouth -e ' + expression);
-	console.log('Mouth expression: ' + text);
-	callback();
+		connection.send('-c mouth -e ' + expression);
+		console.log('mouth: ' + expression);
+		callback();
     };
 
 
     ext.voice = function(text, callback) {
-	connection.send('-c voice -l ' + text);
-	console.log('Voice: ' + text);
-	callback();
+		connection.send('-c voice -l ' + text);
+		callback();
     };
     
     ext.is_connected = function(callback) {
-	return connected;
+		return connected;
     }; 
 
     ext.when_listen = function(text) {
@@ -129,6 +126,7 @@ new (function() {
 	
     ext.is_touch = function(zone) {
 	if (textTouch == zone) {
+		textTouch = "";
 		return true;
 	}
 		
@@ -149,16 +147,16 @@ new (function() {
     var descriptor = {
         blocks: [
             ['w', 'Connect ip: %s port: %n', 'connect', '169.254.98.67', 51717],
-	    ['w', 'Say %s', 'say', 'I am connected!'],
-	    ['w', 'Nose color: %m.noseColor', 'nose_color', 'red'],
-	    ['w', 'Voice: %m.voice', 'voice', 'english'],
-	    [' ', 'rotate direction:%m.motorDirection degrees:%nÂº', 'rotate', 'right', 511],
-	    ['w', 'set rotate speed %n', 'set_rotate_speed', 100],
-	    ['w', 'Mouth: %m.expression', 'mouthExpression', 'smile'],
-	    ['b', 'is connected', 'is_connected'],
-	    ['h', 'when touch %m.touchZone', 'is_touch', 'up'],
-	    ['h', 'when listen %s', 'when_listen', 'hello'],
-	    ['h', 'when message received', 'message_received'],
+			['w', 'Say %s', 'say', 'I am connected!'],
+			['w', 'Nose color: %m.noseColor', 'nose_color', 'red'],
+			['w', 'Voice: %m.voice', 'voice', 'english'],
+			[' ', 'rotate direction:%m.motorDirection degrees:%nº', 'rotate', 'right', 511],
+			['w', 'set rotate speed %n', 'set_rotate_speed', 100],
+			['w', 'Mouth: %m.expression', 'mouthExpression', 'smile'],
+			['b', 'is connected', 'is_connected'],
+			['h', 'when touch %m.touchZone', 'is_touch', 'up'],
+			['h', 'when listen %s', 'when_listen', 'hello'],
+			['h', 'when message received', 'message_received'],
 	],
 	menus: {
             motorDirection: ['right', 'up'],
